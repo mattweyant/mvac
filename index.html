@@ -1,0 +1,148 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Medford Veterans Advisory Committee</title>
+    <link rel="stylesheet" href="css/foundation.css" />
+    <link rel="stylesheet" href="css/datatables.min.css" />
+    <script src="js/vendor/modernizr.js"></script>
+    <script type="text/javascript">
+      var map;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 42.4251844, lng: -71.1375219},
+          zoom: 14
+        });
+      }
+
+      var index;
+      var docs;
+      var db;
+      var table;
+
+    </script>
+  </head>
+  <body>
+    
+    <div class="row">
+      <div class="large-12 columns">
+        <h1>Medford's Monuments to its Service Members</h1>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="large-12 columns">
+        <div class="panel" id="map" style="height: 500px;"></div>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="large-12 columns">
+          <h3>Search</h3>
+          <div class="large-9 columns">
+            <input type="text" placeholder="Enter name or place name" id="txt_query" />
+          </div>
+          <div class="large-3 columns">
+            <input class="button" type="button" value="Search" id="btn_search" />
+          </div>
+        </div>
+    </div>
+
+    <div class="row">
+      <div class="large-12 columns">
+        <div class="panel hide" id="results"></div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="large-12 columns">
+        <div class="panel">
+          <table id="table">
+            <thead>
+              <tr>
+                <!--<td>id</td>-->
+                <td>Name</td>
+                <td>Location</td>
+                <!--<td>latitude</td>-->
+                <!--<td>longitude</td>-->
+                <td>Monument Type</td>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/foundation.min.js"></script>
+    <script src="js/vendor/elasticlunr.js"></script>
+    <script src="js/vendor/taffy.js"></script>
+    <script src="js/vendor/datatables.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZDFvxE4epNyLZJcJT7ofz5iqWJ6L--wU&callback=initMap"></script>
+    <script>
+      $(document).foundation();
+
+      $(document).ready(function() {
+
+        index = elasticlunr(function() {
+          this.addField("name");
+          this.addField("location");
+          this.addField("latitude");
+          this.addField("longitude");
+          this.setRef("id");
+        });
+
+        docs = [
+          {"id": 1, "name": "John L. Murdock", "location": "Woburn St & Playstead Rd", "latitude": 42.4295908, "longitude":-71.1326572, "monumentType":"monument"},
+          {"id": 2, "name": "Cook Plaque", "location":"Playstead Rd (center strip) opposite Woburn St", "latitude": 42.4295908, "longitude":-71.1326572, "monumentType":"plaque"},
+          {"id": 3, "name": "James Harry Smith", "location":"Playstead Park", "latitude": 42.4251844, "longitude": -71.1375219, "monumentType":"plaque"},
+          {"id": 4, "name": "Ward 6 Honor Roll", "location": "Playstead Rd & Clewley Rd", "latitude":42.4262151, "longitude": -71.1347511, "monumentType": "monument"},
+          {"id": 5, "name": "Wood (goldstar)", "location": "Bussell Rd & Woods Rd", "latitude":42.4264729, "longitude": -71.1386874, "monumentType":"gold star"},
+          {"id": 6, "name": "Wood (goldstar)", "location": "Woods Rd & Playstead Rd", "latitude": 42.4268988, "longitude": -71.1348119, "monumentType": "gold star"},
+          {"id": 7, "name": "J Henry Doll, Jr. Square", "location": "Playstead Rd & Woods Rd", "latitude": 42.4269657, "longitude": -71.1346832, "monumentType": "square"},
+          {"id": 8, "name": "Roberts Rd", "location": "Roberts Rd & Playstead Rd", "latitude":42.4275043, "longitude": -71.1343524, "monumentType": "gold star"},
+          {"id": 9, "name": "Roberts Rd", "location": "Roberts Rd & Bussell Rd", "latitude": 42.4270714, "longitude": -71.1393676, "monumentType": "gold star"},
+          {"id": 10, "name": "Bennett Delta", "location": "Grove St & High St", "latitude": 42.4216269, "longitude": -71.1364419, "monumentType": "monument"}
+        ];
+
+        docs.forEach(function(doc, i, array) {
+          // Add monument to the search index
+          index.addDoc(doc);
+
+          // Add placemark for each monument
+          var marker = new google.maps.Marker({
+            position: {lat: doc.latitude, lng: doc.longitude},
+            map: map,
+            title: doc.name
+          })
+        });
+
+        db = TAFFY(docs);
+
+        $('#btn_search').on("click", function() {
+          var res = index.search($('#txt_query').val());
+          if(res.length > 0) {
+            res.forEach(function(d, i, r) {
+              // filter the data table
+              var doc = db({id: parseInt(d.ref, 10)}).first();
+            })
+          }
+        });
+
+        table = $('#table').DataTable({
+          data: docs,
+          columns: [
+//            { data: 'id' },
+            { data: 'name' },
+            { data: 'location' },
+//            { data: 'latitude' },
+//            { data: 'longitude' },
+            { data: 'monumentType' }
+          ]
+        });
+      });
+    </script>
+  </body>
+</html>
