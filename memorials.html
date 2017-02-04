@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>City of Medford | Veterans | Memorials</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.0/css/foundation.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/zf/dt-1.10.13/fh-3.1.2/r-2.1.0/datatables.min.css"/>
+
+    <script type="text/javascript">
+      var map;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 42.4251844, lng: -71.1375219},
+          zoom: 14
+        });
+      }
+    </script>
+</head>
+<body>
+    <div class="row">
+        <div class="small-12 large-12 columns"><h1>City of Medford Veterans' Services</h1></div>
+    </div>
+
+    <div class="row">
+        <div class="small-12 large-12 columns">
+            <h3>
+                Plaques, Squares and Monuments
+            </h3>
+        </div>
+    </div>
+
+    <div class="row">
+      <div class="small-12 large-12 columns">
+        <div class="panel" id="map" style="height: 500px;"></div>
+        <p>&nbsp;</p>
+      </div>
+    </div>
+
+    <div class="row">
+        <div class="small-12 large-12 columns">
+            <table id="monuments" class="display" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Location</th>
+                        <th>Neighborhood</th>
+                        <th>Latitude</th>
+                        <th>Longitude</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>John L. Murdock</td>
+                        <td>Woburn St & Playstead St</td>
+                        <td>West Medford</td>
+                        <td>42.4295908</td>
+                        <td>-71.1326572</td>
+                    </tr>
+                    <tr>
+                        <td>Cook Plaque</td>
+                        <td>Playstead St opposite Woburn St</td>
+                        <td>West Medford</td>
+                        <td>42.4295908</td>
+                        <td>-71.1326572</td>
+                    </tr>
+                    <tr>
+                        <td>James Harry Smith</td>
+                        <td>Playstead Park</td>
+                        <td>West Medford</td>
+                        <td>42.4251844</td>
+                        <td>-71.1375219</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/what-input/4.0.6/what-input.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.0/js/foundation.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/zf/dt-1.10.13/fh-3.1.2/r-2.1.0/datatables.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZDFvxE4epNyLZJcJT7ofz5iqWJ6L--wU&callback=initMap"></script>
+    <script>
+      $(document).foundation();
+      $(document).ready(function() {
+        $('#monuments').DataTable({
+            "columns": [
+                { "data": "name" },
+                { "data": "location" },
+                { "data": "neighborhood" },
+                { "data": "latitude" },
+                { "data": "longitude" }
+            ],
+            "columnDefs": [
+                { "targets":[3], "visible":false },
+                { "targets":[4], "visible":false }
+            ]
+        });
+      });
+    </script>
+</body>
+</html>
