@@ -6,25 +6,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>City of Medford | Veterans</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.0/css/foundation.min.css" />
-    <style type="text/css">
-        .tabs-title>a {
-            font-size: 1.05rem;
-            padding: 1.25rem 1.25rem;
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/motion-ui/1.1.1/motion-ui.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css" />
+    <link rel="stylesheet" href="css/vets.css" />
 </head>
 <body>
     <div class="row">
-        <div class="small-12 large-12 columns"><h1>City of Medford Veterans' Services</h1></div>
+        <div class="small-12 large-12 columns">
+            <h1>City of Medford Veterans' Services</h1>
+            <p>Connecting our veterans to jobs, benefits and services</p>
+        </div>
     </div>
 
     <div class="row">
-        <div class="small-12 large-12 columns">
-            <p>
-                Providing assistance, support, and services to veterans and their
-                dependents to access every local, state and federal V.A. benefit to which
-                they are entitled.
-            </p>
+        <div class="orbit" role="region" aria-label="Veterans Services Office" data-orbit data-options="animInFromLeft:fade-in; animInFromRight:fade-in; animOutToLeft:fade-out; animOutToRight:fade-out;">
+            <ul class="orbit-container">
+              <button class="orbit-previous"><span class="show-for-sr">Previous Slide</span>&#9664;&#xFE0E;</button>
+              <button class="orbit-next"><span class="show-for-sr">Next Slide</span>&#9654;&#xFE0E;</button>
+              <li class="orbit-slide is-active">
+                <img class="orbit-image" src="img/army-flag.jpg" alt="United States Army">
+                <figcaption class="orbit-caption">Promotion and re-enlistment in Monrovia, Liberia</figcaption>
+              </li>
+              <li class="orbit-slide">
+                <img class="orbit-image" src="img/usaf-jet.jpg" alt="United States Air Force">
+                <figcaption class="orbit-caption">EOD Airmen supporting Operation Enduring Freedom</figcaption>
+              </li>
+              <li class="orbit-slide">
+                <img class="orbit-image" src="img/navy-flightdeck.jpg" alt="United States Air Force">
+                <figcaption class="orbit-caption">Flight deck operations onboard the USS Harry S. Truman</figcaption>
+              </li>
+              <li class="orbit-slide">
+                <img class="orbit-image" src="img/usmc-veteransday.jpg" alt="United States Air Force">
+                <figcaption class="orbit-caption">U.S. Marines marching in NYC Veterans Day parade</figcaption>
+              </li>
+              <li class="orbit-slide">
+                <img class="orbit-image" src="img/uscg-veteransday.jpg" alt="United States Air Force">
+                <figcaption class="orbit-caption">U.S. Coast Guard marching in Veterans Day parade</figcaption>
+              </li>
+            </ul>
+            <nav class="orbit-bullets">
+                <button class="is-active" data-slide="0"><span class="show-for-sr">United States Army</span><span class="show-for-sr">Current Slide</span></button>
+                <button data-slide="1"><span class="show-for-sr">United States Air Force</span></button>
+                <button data-slide="2"><span class="show-for-sr">United States Navy</span></button>
+                <button data-slide="3"><span class="show-for-sr">United States Marine Corps</span></button>
+                <button data-slide="4"><span class="show-for-sr">United States Coast Guard</span></button>
+              </nav>
         </div>
     </div>
 
@@ -141,11 +167,11 @@
                     <h2>Veterans Advisory Committee</h2>
                     <ul>
                         <li>Earnest Lindsay, Director of Veterans' Services</li>
-                        <li>Laurence Brown - 26 Florence Street</li>
-                        <li>Domenic D'Orsi - 48 Suffolk Street</li>
-                        <li>Dominic Marcellino - Winchester</li>
-                        <li>Michael Vecchia - 94 Taft Street</li>
-                        <li>Matthew Weyant - 134 Auburn Street</li>
+                        <li>Laurence Brown</li>
+                        <li>Domenic D'Orsi</li>
+                        <li>Dominic Marcellino</li>
+                        <li>Michael Vecchia</li>
+                        <li>Matthew Weyant</li>
                     </ul>
                 </div>
             </div>
@@ -164,7 +190,33 @@
         </div>
     </div>
 
+    <footer class="footer">
+        <div class="row">
+    <div class="small-12 medium-6 large-5 columns">
+      <p class="logo"><i class="fi-shield"></i> City of Medford Veterans Services Office</p>
+      <p class="copyright">Carousel images were cropped to fit. Photo credit: <a href="https://www.flickr.com/photos/dvids/">DVIDSHUB</a></p>
+    </div>
+    <div class="small-12 medium-6 large-4 columns">
+      <ul class="contact">
+        <li><p><i class="fi-marker"></i>Medford City Hall, Room 100<br/>
+                        85 George P. Hassett Drive<br/>
+                        Medford, MA 02155</p></li>
+        <li><p><i class="fi-telephone"></i>781-393-2503</p></li>
+      </ul>
+    </div>
+    <div class="small-12 medium-12 large-3 columns">
+        <p class="about"><b>About Veterans Services</b></p>
+      <p class="about subheader">Providing assistance, support, and services to veterans and their
+                dependents to access every local, state and federal V.A. benefit to which
+                they are entitled.</p>
+      <ul class="inline-list social">
+        <a href="https://www.facebook.com/groups/medfordvets/"><i class="fi-social-facebook"></i></a>
+        <a href="https://twitter.com/MedfordVeterans"><i class="fi-social-twitter"></i></a>
+      </ul>
+    </div>
+  </div>
 
+    </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/what-input/4.0.6/what-input.min.js"></script>
