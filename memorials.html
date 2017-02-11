@@ -1035,6 +1035,14 @@
                         <td>-71.1219878</td>
                     </tr>
 
+                    <tr>
+                        <td>Raymond Gordon O'Neal</td>
+                        <td>Boston Ave & Quincy St</td>
+                        <td>Hillside</td>
+                        <td>42.413730</td>
+                        <td>-71.125187</td>
+                    </tr>
+
                 </tbody>
             </table>
         </div>
@@ -1049,6 +1057,7 @@
       $(document).foundation();
       $(document).ready(function() {
         var table = $('#monuments').DataTable({
+            "lengthMenu": [[25, 50, -1], [25, 50, "All"]],
             "columns": [
                 { "data": "name" },
                 { "data": "location" },
@@ -1057,6 +1066,7 @@
                 { "data": "longitude" }
             ],
             "columnDefs": [
+                { "targets":[0], "orderData": [2,0] },
                 { "targets":[3], "visible":false },
                 { "targets":[4], "visible":false }
             ]
