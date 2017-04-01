@@ -95,3 +95,7 @@ ENV/
 # Rope project settings
 .ropeproject
 
+
+# MVAC ignore
+data/
+original/
